@@ -40,7 +40,7 @@ const Layout = ({ children }) => {
         <header className="border-2 border-solid mb-4 flex justify-center items-center h-20 font-extrabold uppercase hover:text-gray-600 hover:cursor-pointer	">
           <Link to="/">{shop.name}</Link>
         </header>
-        <main>
+        <main className="pb-6">
           <Suspense>{children}</Suspense>
         </main>
       </div>

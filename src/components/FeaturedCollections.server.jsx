@@ -39,8 +39,6 @@ const FeaturedCollections = () => {
                     alt={collection.title}
                   />
                 </div>
-
-                {/* </div> */}
               </Link>
             );
         })}
