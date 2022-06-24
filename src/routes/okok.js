@@ -1,5 +1,8 @@
-const ProductDetails = ({ products }) => {
-  return <div>ProductDetails</div>;
+import { useProductOptions } from "@shopify/hydrogen";
+
+const OptionRadio = ({ values, name }) => {
+  const { selectedOptions, setSelectedOptions } = useProductOptions();
+  return <div>OptionRadio</div>;
 };
 
-export default ProductDetails;
+export default OptionRadio;

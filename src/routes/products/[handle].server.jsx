@@ -10,18 +10,70 @@ import { Suspense } from "react";
 import Layout from "../../components/Layout.server";
 import ProductDetails from "../../components/ProductDetails.client";
 
-const Product = ({ params }) => {
+const Product = ({}) => {
   const { handle } = useRouteParams();
 
   const PRODUCT_QUERY = gql`
-    query Product($language: LanguageCode, $handle: String!)
-    @inContext(language: $language) {
+    fragment MediaFields on Media {
+      mediaContentType
+      alt
+      previewImage {
+        url
+      }
+      ... on MediaImage {
+        id
+        image {
+          url
+          width
+          height
+        }
+      }
+    }
+    query Product($handle: String!) {
       product(handle: $handle) {
         id
         title
+        vendor
+        descriptionHtml
+        media(first: 7) {
+          nodes {
+            ...MediaFields
+          }
+        }
+        variants(first: 100) {
+          nodes {
+            id
+            availableForSale
+            compareAtPriceV2 {
+              amount
+              currencyCode
+            }
+            selectedOptions {
+              name
+              value
+            }
+            image {
+              id
+              url
+              altText
+              width
+              height
+            }
+            priceV2 {
+              amount
+              currencyCode
+            }
+            sku
+            title
+            unitPrice {
+              amount
+              currencyCode
+            }
+          }
+        }
         seo {
-          title
           description
+          title
         }
       }
     }
@@ -48,9 +100,6 @@ const Product = ({ params }) => {
       <Suspense>
         <Seo type="product" data={product} />
       </Suspense>
-      <section>
-        This is a product page for <strong>{handle}</strong>
-      </section>
       <ProductDetails product={product} />
     </Layout>
   );
