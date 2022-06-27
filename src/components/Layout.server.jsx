@@ -1,17 +1,8 @@
-import {
-  useShopQuery,
-  CacheLong,
-  gql,
-  useUrl,
-  Link,
-  Seo,
-} from "@shopify/hydrogen";
+import { useShopQuery, CacheLong, gql, Seo } from "@shopify/hydrogen";
 import { Suspense } from "react";
+import Header from "./Header.client";
 
 const Layout = ({ children }) => {
-  const { pathname } = useUrl();
-  const isHome = pathname === "/";
-
   const SHOP_QUERY = gql`
     query shopInfo {
       shop {
@@ -37,11 +28,9 @@ const Layout = ({ children }) => {
         />
       </Suspense>
       <div className="antialiased bg-slate-300 min-h-screen pr-6 pl-6 md:pr-8 md:pl-8 lg:pl-12 lg:pr-12 min-w-screen">
-        <header className="border-2 border-solid mb-4 flex justify-center items-center h-20 font-extrabold uppercase hover:text-gray-600 hover:cursor-pointer	">
-          <Link to="/">{shop.name}</Link>
-        </header>
+        <Header shop={shop} />
         <main className="pb-6">
-          <Suspense>{children}</Suspense>
+          <Suspense fallback={null}>{children}</Suspense>
         </main>
       </div>
     </>

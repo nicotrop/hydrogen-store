@@ -1,8 +1,8 @@
 import { useProductOptions } from "@shopify/hydrogen";
 import { useState } from "react";
+
 const OptionRadio = ({ values, name }) => {
   const { selectedOptions, setSelectedOption } = useProductOptions();
-  console.log(selectedOptions);
   const [selectedValue, setSelectedValue] = useState();
 
   return (

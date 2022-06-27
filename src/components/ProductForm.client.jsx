@@ -3,12 +3,17 @@ import {
   ProductPrice,
   useProductOptions,
 } from "@shopify/hydrogen";
+import { useState } from "react";
 import OptionRadio from "./OptionRadio.client";
 
 const ProductForm = ({ product }) => {
   const { options, selectedVariant } = useProductOptions();
 
+  const [selectedOption, setSelectedOption] = useState(selectedVariant);
+
   const isOutOfStock = !selectedVariant?.availableForSale || false;
+
+  console.log(selectedOption.id);
 
   return (
     <form>
@@ -20,7 +25,7 @@ const ProductForm = ({ product }) => {
           return (
             <div key={index}>
               <legend>{name}</legend>
-              <div>
+              <div className="grid grid-cols-3">
                 <OptionRadio name={name} values={values} />
               </div>
             </div>
