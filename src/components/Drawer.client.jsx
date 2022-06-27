@@ -29,9 +29,9 @@ const Drawer = ({ open, onClose, children }) => {
               >
                 <Dialog.Panel className="md:w-[15rem] w-[10rem] transform text-left align-middle shadow-xl transition-all antialiased bg-neutral-50">
                   <header className="sticky top-0 flex items-center justify-between px-4 h-24 sm:px-8 md:px-12">
-                    <h2 className="whitespace-pre-wrap max-w-prose font-bold text-lg">
+                    <h3 className="whitespace-pre-wrap max-w-prose font-bold text-lg">
                       Cart
-                    </h2>
+                    </h3>
                     <button
                       type="button"
                       className="p-4 -m-4 transition text-primary hover:text-primary/50"
@@ -50,5 +50,7 @@ const Drawer = ({ open, onClose, children }) => {
     </Transition>
   );
 };
+
+Drawer.Title = Dialog.Title;
 
 export default Drawer;

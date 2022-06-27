@@ -1,4 +1,5 @@
 import { useUrl, Link, useCart } from "@shopify/hydrogen";
+import CartDetails from "./CartDetails.client";
 import Drawer from "./Drawer.client";
 import useDrawer from "./useDrawer.client";
 
@@ -10,7 +11,14 @@ const Header = ({ shop }) => {
 
   return (
     <>
-      <Drawer open={isOpen} onClose={closeDrawer}></Drawer>
+      <Drawer open={isOpen} onClose={closeDrawer}>
+        <div className="grid">
+          <Drawer.Title>
+            <h3 className="sr-only">Cart Drawer</h3>
+          </Drawer.Title>
+          <CartDetails onClose={closeDrawer} />
+        </div>
+      </Drawer>
       <header className="flex justify-between pt-4 pb-4">
         <div></div>
         <div>
