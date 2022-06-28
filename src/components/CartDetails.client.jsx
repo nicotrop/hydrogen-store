@@ -22,7 +22,7 @@ const CartDetails = ({ onClose }) => {
         </ul>
       </section>
       <section>
-        <span>Order summary</span>
+        <span>Order summaryS</span>
         <OrderSummary />
         <CartCheckoutButton />
       </section>
